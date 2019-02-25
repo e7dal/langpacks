@@ -41,5 +41,6 @@ RUN set -ex \
 # Mounting volume for /opt/sccache will allow reusing previously build dependencies
 # Mounting volume for /usr/local/cargo/registry will speed up dependency resolution
 ENV RUSTC_WRAPPER=/usr/local/bin/sccache
-VOLUME ["/usr/local/cargo/registry", "/opt/sccache"]
 
+COPY --chown=0:0 rust-buildtime/context/build /usr/local/bin/algorithmia-build
+COPY --chown=0:0 rust-buildtime/context/test /usr/local/bin/algorithmia-test
