@@ -2,7 +2,6 @@ use algorithmia::prelude::*;
 use serde::{Deserialize, Serialize};
 use std::error::Error;
 
-// API calls begin at the method decorated with #[entrypoint]
 // Input, Output, and Error types are all configurable
 // For more details, see algorithmia.com/developers/algorithm-development/languages/rust
 
@@ -16,11 +15,16 @@ struct Output {
     msg: String,
 }
 
-#[entrypoint]
+// Entry point for each API call
 fn apply(input: Input) -> Result<Output, Box<Error>> {
     Ok(Output {
         msg: format!("Hello {}", input.name),
     })
+}
+
+// Initial setup
+fn main() {
+    setup_handler(apply)
 }
 
 //
